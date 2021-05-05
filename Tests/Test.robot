@@ -1,19 +1,18 @@
 *** Settings ***
-Library             SeleniumLibrary
-Library             DebugLibrary
+# Lukee resources tiedoston käyttöön (mm. kirjastot)
 Resource            D:/Koulu/TeknologiatLopputyö/Resourses/Keywords.robot
-#Testien jälkeen tehtävät toimenpiteet
+# Testien jälkeen tehtävät toimenpiteet
 Suite Teardown      CloseAllBrowsers
 
 # Testien ajo: robot Test.robot
 # Tarkemmat lokitiedot robot -L TRACE Test.robot 
 
+# Muuttuja samassa tiedostossa missä sitä käytetään.
 *** Variables ***
 ${games}        //*[@id="sidebar-item-24a"]
 
 
 *** Test Cases ***
-
 NavigateToVerkkokauppa
     Appstate
 
@@ -30,7 +29,7 @@ useSearchBar
     ClickElement                    //a[text()="OMEN Vector -pelihiiri, musta"]
     Sleep                           2
     ClickElement                    //*[@id="main"]/section/aside/div[2]/div[2]/div[1]/div[2]/button[1]/span
-    # Avaa komentorivillä Debuggerin:
+    # Avaa komentorivillä Debuggerin
     # Debug
     # Palauttaa selaimen takaisin landing pagelle jotta seuraava testi voi aloittaa ns. puhtaalta pöydältä.
     [Teardown]                      GoTo                                            https://verkkokauppa.com
@@ -42,12 +41,12 @@ createCustomerFailed
     ClickElement                    //button[@aria-label="Hae"]
     # Haettiin XPath spanin tekstillä
     WaitUntilElementIsVisible       //span[text()="Haku"]
-    #Klikkaa teksti elementtiä ja sulkee haku ikkunan
+    #Klikkaa teksti elementtiä ja sulkee haku ikkunan joka estää etenemisen
     WaitAndClickElement             //span[text()="Sileä punottu kaapeli"]
     #Käyttäen Stringiä lokaattorina
     ClickLink                       OMEN Vector -pelihiiri, musta
     Sleep                           2
-    #Suoraan chromesta kopioitu XPath lisää ostoskoriin painikkeelle (huom todella vaikea ymmärtää mitä elementtiä tarkoitetaan)
+    #Suoraan chromesta kopioitu XPath "Lisää ostoskoriin" painikkeelle (huom todella vaikea ymmärtää mitä elementtiä tarkoitetaan)
     ClickElement                    //*[@id="main"]/section/aside/div[2]/div[2]/div[1]/div[2]/button[1]/span
     WaitAndClickElement             //span[text()="Siirry kassalle"]
     WaitUntilElementIsVisible       //h2[@class="vk-step-title vk-step-title--cart"]
@@ -101,4 +100,3 @@ addSuosituinTuote
     WaitUntilElementIsVisible       //*[@class="Button-mt7im1-0 ihpnqE"][contains(string(), "Lisää ostoskoriin")]
     # Käytännössä turha viimeisessä testissä sillä suite teardown sulkee selaimen
     [Teardown]                      GoTo                                            https://verkkokauppa.com
-    
