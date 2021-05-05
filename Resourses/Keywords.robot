@@ -10,6 +10,8 @@ ${BROWSER}          Chrome
 Appstate
     Open Browser                    https://verkkokauppa.com        ${BROWSER}
     MaximizeBrowserWindow
+    # Asetetaan default odotusaika
+    Set Selenium Timeout            10
 
 AcceptCookies
     WaitUntilElementIsVisible       allow-cookies                   
