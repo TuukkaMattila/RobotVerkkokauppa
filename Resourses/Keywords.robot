@@ -16,6 +16,11 @@ AcceptCookies
     ClickElement                    allow-cookies
     WaitUntilElementIsNotVisible    allow-cookies
 
+ifCookies
+    ${status}=		                Run Keyword And Return Status	    ElementShouldBeVisible          allow-cookies
+    Run Keyword If 					'${status}'=='True'     AcceptCookies
+    Run Keyword If 					'${status}'=='False'    Log         No cookies visible
+
 # Vastaanottaa elementin, odottaa sen näkyvän ja klikkaa sitä
 WaitAndClickElement
     [Arguments]                     ${locator}
